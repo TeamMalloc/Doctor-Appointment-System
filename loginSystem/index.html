@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System</title>
+
+    <!-- local css -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="registrationANDlogin">
+        <div class="card">
+            <h2 style="text-align: center;">Doctor Appointment System</h2>
+            <div class="buttons">
+                <div id="btn_col"></div>
+                <button type="button" class="btn-t" onclick="login()">Login</button>
+                <button type="button" class="btn-t" onclick="register()">Registration</button>
+            </div>
+
+            <!-- form -->
+            <form id="Login" action="" class="input-group">
+                <input type="text" class="input-field" placeholder="user name" required>
+                <input type="text" class="input-field" placeholder="enter your password" required>
+                <input type="checkbox" class="check-box"><span>remmember password</span>
+                <button type="submit" class="submit-btn">Log in</button>
+
+            </form>
+
+            <form id="Register" action="" class="input-group">
+                <input type="text" class="input-field" placeholder="user name" required>
+                <input type="email" class="input-field" placeholder="enter your email id" required>
+                <input type="text" class="input-field" placeholder="enter password" required>
+                <input type="text" class="input-field" placeholder="confirm password" required>
+                <input type="checkbox" class="check-box"><span>I agree to the terms & conditions</span>
+                <button type="submit" class="submit-btn">Register</button>
+
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- js -->
+    <script src="/js/app.js"></script>
+
+</body>
+
+</html>
