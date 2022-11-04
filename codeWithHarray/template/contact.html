@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}contact{% endblock title %}
+{% block body %}
+<p>hello, contact page</p>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <form action="/contact" method="POST">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Username"
+                        aria-label="Username" aria-describedby="basic-addon1" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-text">First and last name</span>
+                    <input type="text" id="fname" name="fname" aria-label="First name" class="form-control" required>
+                    <input type="text" id="lname" name="lname" aria-label="Last name" class="form-control" required>
+                </div>
+                <div class="form-text">Your first name and last name &#128522;</div>
+
+                <div class="input-group mt-3">
+                    <span class="input-group-text">Emain Adderss</span>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                        required>
+                </div>
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+
+                <div class="input-group mt-3">
+                    <span class="input-group-text">Password</span>
+                    <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Create a password"
+                        required>
+                </div>
+                <div class="input-group mt-3">
+                    <span class="input-group-text">Confirm Your Password</span>
+                    <input type="password" class="form-control" id="pass2" name="pass2"
+                        placeholder="Enter created password" required>
+                </div>
+                <button type="submit" class="btn btn-outline-primary mt-3">Register Now</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}
