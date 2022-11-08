@@ -46,8 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-]
+    'django.contrib.staticfiles', 
+    ## Customize by Mutalib
+    'home.apps.HomeConfig'
+] 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
