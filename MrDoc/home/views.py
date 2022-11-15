@@ -1,17 +1,63 @@
 from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
-from home.models import NearBy_Doctor
+from home.models import NearBy_Doctor, Appointment_List, departments
 from django.contrib import messages
 
 # for user authticcation 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login as authlogin,logout
+# email
+# from MrDoc import settings
+# from django.core.mail import send_mail
+from email.message import EmailMessage
+import ssl
+import smtplib
 
 
 
 # Create your views here.
 def home(request):
-    return render(request,'index.html')
+    # this form is accessing for taking appointment list from home page
+    if request.method == "POST":
+        depName = request.POST.get("sedep")
+        Pname = request.POST.get("name")
+        Pmail = request.POST.get("mail")
+        docName = request.POST.get("sedoc")
+        Pphone = request.POST.get("phone")
+        AppointDate = request.POST.get("date")
+
+        appointment_list = Appointment_List(se_dept = depName, se_doc = docName, patient_name = Pname, patient_phone = Pphone, patient_email = Pmail, calendar = AppointDate)
+        appointment_list.save()
+
+        # SEND EMAIL
+        email_sender = 'sa3518548@gmail.com'
+        email_password = 'pziggqxkwggxtopt'
+
+        email_receiver = 'kopildas451@gmail.com'
+        subject = "hello kofil "
+        body = """
+            your appointment is booked.
+        """
+        em = EmailMessage()
+        em['From'] = email_sender
+        em['To'] = email_receiver
+        em['subject'] = subject
+        em.set_content(body)
+
+        context = ssl.create_default_context()
+
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465,context=context) as smtp:
+            smtp.login(email_sender,email_password)
+            smtp.sendmail(email_sender,email_receiver,em.as_string())
+
+
+
+
+
+        messages.success(request,"Your Appointment is booked, we send a mail on your mail address. Please check it out and Thank you!")
+
+
+    return render(request,'index.html',{'doc':NearBy_Doctor.objects.all(), 'dep':departments.objects.all()})
     # return HttpResponse('this is home page')
 
 def contact(request):

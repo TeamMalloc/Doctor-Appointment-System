@@ -30,4 +30,15 @@ class Appointment_List(models.Model):
     patient_phone = models.IntegerField()
     patient_email = models.EmailField(max_length=254)
     calendar = models.DateField()
+
+    def __str__(self):
+        return self.patient_name
+
+#For departments
+class departments(models.Model):
+    dep_name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.dep_name
+    
+
     
