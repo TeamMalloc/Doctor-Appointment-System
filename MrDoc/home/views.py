@@ -33,11 +33,15 @@ def home(request):
         email_sender = 'sa3518548@gmail.com'
         email_password = 'pziggqxkwggxtopt'
 
-        email_receiver = 'kopildas451@gmail.com'
-        subject = "hello kofil "
-        body = """
-            your appointment is booked.
-        """
+        email_receiver = Pmail
+        subject = "hello "+Pname+"! check your appointment status."
+        body = "Hi "+ Pname+ " your appointment is booked.\nthanking you team malloc to visit our doctor appointment system.\nDoctor name: "+docName +"\nDepartment: "+depName+"\nappointment date: "+AppointDate
+
+            
+
+            
+            
+        
         em = EmailMessage()
         em['From'] = email_sender
         em['To'] = email_receiver
