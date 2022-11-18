@@ -135,7 +135,7 @@ def login(request):
         if user is not None:
             authlogin(request, user)
             fname = user.first_name
-            return render(request, 'doctorAcc.html', {'fname':fname})
+            return render(request, 'index.html', {'fname':fname})
         
         else:
             messages.error(request, 'Bad request! Username or Password did not match. Try aging.')

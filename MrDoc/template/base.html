@@ -60,12 +60,16 @@
             data-bs-target="#exampleModalToggle">
             Create Your Account
           </button>
-          <a href="/signUp" class="btn btn-outline-primary " tabindex="-1" role="button" aria-disabled="true">SignUp
-            Now</a>
+          
 
           {% if user.is_authenticated %}
           <a href="#" class="btn btn-outline-primary " tabindex="-1" role="button" aria-disabled="true">{{fname}}</a>
+          {% else %}
+          <a href="/signUp" class="btn btn-outline-primary " tabindex="-1" role="button" aria-disabled="true">SignUp
+            Now</a>
           {% endif %}
+          
+
         </div>
       </div>
     </div>
