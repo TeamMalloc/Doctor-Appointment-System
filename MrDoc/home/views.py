@@ -64,12 +64,10 @@ def home(request):
     return render(request,'index.html',{'doc':NearBy_Doctor.objects.all(), 'dep':departments.objects.all()})
     # return HttpResponse('this is home page')
 
-def contact(request):
-    return render(request, 'contact.html')
-    # return HttpResponse('this is contact page')
 
 def about(request):
-    return render(request,'about.html')
+    fn = User.first_name
+    return render(request,'about.html',{'fname':fn})
 
 def services(request):
     return render(request,'services.html')
@@ -149,9 +147,6 @@ def signout(request):
     messages.success(request,'Logged out successfully!')
     return redirect('home')
 
-def base(request):
-    fname = User.first_name
-    return render(request,'base.html',{'fname':fname})
 
 # for doctor account
 def doctorAcc(request):
@@ -170,3 +165,14 @@ def emDoc(request):
     wkh = "Emergency doc"
 
     return render(request,'emDoc.html',{'em':NearBy_Doctor.objects.all(),'wkh':wkh})
+
+def contact(request):
+    
+    return render(request, 'contact.html')
+    # return HttpResponse('this is contact page')
+
+def base(request):
+
+    return render(request,'base.html')
+
+

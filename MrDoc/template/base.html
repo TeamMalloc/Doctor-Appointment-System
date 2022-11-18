@@ -61,12 +61,14 @@
 
 
           {% if user.is_authenticated %}
+          {% comment %} {% with name=fname %} {% endcomment %}
 
           <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
             data-bs-target="#exampleModalToggle">
             Create Your Account
           </button>
-          <a href="#" class="btn btn-outline-primary " tabindex="-1" role="button" aria-disabled="true">{{fname}}</a>
+          {% comment %} <a href="#" class="btn btn-outline-primary " tabindex="-1" role="button" aria-disabled="true">{{fname}} user</a> {% endcomment %}
+          {% comment %} {% endwith %} {% endcomment %}
           {% else %}
           <a href="/login" class="btn btn-outline-primary " tabindex="-1" role="button" aria-disabled="true">Loggin
             Now</a>
