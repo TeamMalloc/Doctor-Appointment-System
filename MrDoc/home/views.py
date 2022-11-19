@@ -133,6 +133,7 @@ def login(request):
         if user is not None:
             authlogin(request, user)
             fname = user.first_name
+            messages.success(request,'Thank You! Your are successfully logged in. Now you can create your desired account.')
             return render(request, 'index.html', {'fname':fname})
         
         else:
@@ -172,7 +173,7 @@ def contact(request):
     # return HttpResponse('this is contact page')
 
 def base(request):
-
+    
     return render(request,'base.html')
 
 

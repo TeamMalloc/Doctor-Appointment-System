@@ -20,7 +20,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Malloc</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -67,7 +67,8 @@
             data-bs-target="#exampleModalToggle">
             Create Your Account
           </button>
-          {% comment %} <a href="#" class="btn btn-outline-primary " tabindex="-1" role="button" aria-disabled="true">{{fname}} user</a> {% endcomment %}
+          {% comment %} <a href="#" class="btn btn-outline-primary " tabindex="-1" role="button"
+            aria-disabled="true">{{fname}} user</a> {% endcomment %}
           {% comment %} {% endwith %} {% endcomment %}
           {% else %}
           <a href="/login" class="btn btn-outline-primary " tabindex="-1" role="button" aria-disabled="true">Loggin
@@ -82,32 +83,36 @@
       </div>
     </div>
   </nav>
-  <!-- Optional JavaScript; choose one of the two! -->
 
-  {% comment %} madal starts {% endcomment %}
+  <!-- modal starts -->
   <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
     tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Please Choise Your Account</h1>
+          <h5 class="modal-title" id="exampleModalToggleLabel">Please Choise Your Account</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="card">
             <div class="card-body">
               <div class="d-grid gap-2">
-                <a href="/login" class="btn btn-primary " tabindex="-1" role="button" aria-disabled="true">Doctor</a>
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
+                  data-bs-dismiss="modal">Doctor</button>
                 <div class="text-center sm">
                   <span><mark>OR</mark></span>
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                  Patient
-                </button>
-              </div>
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal"
+                  data-bs-dismiss="modal">Patient</button>
 
+              </div>
             </div>
           </div>
+          <!-- Show a second modal and hide this one with the button below.
+          <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
+            data-bs-dismiss="modal">Doctor</button>
+          <button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal"
+            data-bs-dismiss="modal">Patient</button> -->
         </div>
         <div class="modal-footer">
           <p>Don't forget to select your role.<mark>Doctor</mark> or <mark>Patient</mark> is your role in our website
@@ -116,7 +121,45 @@
       </div>
     </div>
   </div>
-  {% comment %} modal ends {% endcomment %}
+  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          this is doctor account
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
+            data-bs-dismiss="modal">Back to first</button>
+          <a href="/doctorAcc" class="btn btn-primary" tabindex="-1" role="button">Create Account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          this is Patient account
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
+            data-bs-dismiss="modal">Back to first</button>
+          <a href="#" class="btn btn-primary" tabindex="-1" role="button">Create Account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal sends -->
 
 
 
