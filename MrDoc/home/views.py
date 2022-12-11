@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
-from home.models import NearBy_Doctor, Appointment_List, departments
+from home.models import NearBy_Doctor, Appointment_List, departments, doctorAccount
 from django.contrib import messages
 
 # for user authticcation 
@@ -108,6 +108,7 @@ def signUp(request):
         my_user = User.objects.create_user(uname,email,fpass)
         my_user.first_name = fname
         my_user.last_name = lname
+        my_user.username = uname
 
         my_user.save()
 
@@ -151,7 +152,33 @@ def signout(request):
 
 # for doctor account
 def doctorAcc(request):
-    return render(request,'doctorAcc.html')
+    uname = None
+    he = None
+    if request.method == "POST":
+        usname = request.POST.get("username")
+        name = request.POST.get("name")
+        depname = request.POST.get("dep")
+        clinic = request.POST.get("cli")
+        degree = request.POST.get("deg")
+        district = request.POST.get("dis")
+        charge = request.POST.get("char")
+        language = request.POST.get("lang")
+
+        uname = usname
+
+        docAcc = doctorAccount(username=usname,name=name,depName=depname,Clinic=clinic,Degree=degree,district=district,charge=charge,langauge=language)
+        docAcc.save()
+
+
+    he = User.USERNAME_FIELD.title
+    print(he)
+    if he == uname:
+        messages.success(request,"Your account is successfully created")
+        return render(request,'doctorAcc.html')
+    else:
+        messages.error(request,"username did not match. Pleasse try again! ")
+        return redirect('home')
+    
 
 # for NearByDoc
 def NearByDoc(request):
@@ -175,5 +202,8 @@ def contact(request):
 def base(request):
     
     return render(request,'base.html')
+
+def review(request):
+    return render(request,'review.html')
 
 
