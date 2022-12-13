@@ -24,37 +24,45 @@
 
 
 {% if user.is_authenticated %}
-<h1>my name is {{fname}}</h1>
+<!-- <h1>my name is {{don}}</h1> -->
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <img src="../static/img/doctor1.png" class="card-img-top" style="width: 20rem;"
-                        alt="doctor profile">
-                    <div class="docname">
-                        <h3 style="color: #f0e7e7;">Dr.{{fname}}</h3>
-                        <h4 style="color: #f0caca;">Cardiologist surgon</h4>
+        
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="/media/upload/{{image}}" class="card-img-top" style="width: 20rem;"
+                            alt="doctor profile">
+                        <div class="docname">
+                            <h3 style="color: #f0e7e7;">Dr.{{fname}}</h3>
+                            <h4 style="color: #f0caca;">{{department}} surgon</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> 
+        
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title text-center" style="color: 504fec;">PROFILE</h5>
-                    <h3 style="color: #181717;">Dr.{{fname}}</h3>
-                    <h4 style="color: #424040;">Cardiologist surgon</h4>
+                    <div >
+                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
+                          data-bs-dismiss="modal">update</button>
+                        <div class="text-center sm">
+                        <h5 class="card-title text-center" style="color: 504fec;">PROFILE</h5>
+                    </div>
+                    
+                    <h3 style="color: #181717;">Dr.{{docname}}</h3>
+                    <h4 style="color: #424040;">{{department}} surgon</h4>
                     <hr>
                     <mark>
-                        <p style="color: rgb(44, 71, 88);font-weight: 600;">M.S M.Ch(Cardiologist surgon)</p>
-                        <p style="color: rgb(44, 71, 88);font-weight: 600;">North East Medical Hospital</p>
-                        <p style="color: rgb(44, 71, 88);font-weight: 600;">Golapgonj, Sylhet, Bangladesh</p>
+                        <p style="color: rgb(44, 71, 88);font-weight: 600;">{{brife}}</p>
+                        <p style="color: rgb(44, 71, 88);font-weight: 600;">Clinic: {{clinicloc}}</p>
+                        <p style="color: rgb(44, 71, 88);font-weight: 600;">Location: {{location}}</p>
                     </mark>
 
                     <h5 class="card-title text-center " style="color: 504fec;">SPECIALITY</h5>
                     <div class="spa1 d-flex">
-                        <p style="font-size: 25px;"><span class="badge text-bg-primary">Cardiologist</span></p>
+                        <p style="font-size: 25px;"><span class="badge text-bg-primary">{{department}}</span></p>
                         <p style="font-size: 25px;  margin-left: 10px;"><span
                                 class="badge text-bg-primary">Endosocopic</span></p>
                     </div>
@@ -75,19 +83,100 @@
                 <div class="card-body">
                     <h5 class="card-title " style="color: 504fec;">EXPERIENCE <span class="badge bg-secondary">22
                             Years</span></h5>
-                    <h5 class="card-title " style="color: 504fec;">LANGUAGE <span class="badge bg-secondary">English,
-                            Bangeli</span></h5>
-                    <h5 class="card-title " style="color: 504fec;">TYPES OF <span class="badge bg-secondary">full
-                            time</span></h5>
+                    <h5 class="card-title " style="color: 504fec;">LANGUAGE <span class="badge bg-secondary">{{lag_spoken}}</span></h5>
+                    <h5 class="card-title " style="color: 504fec;">TYPES OF <span class="badge bg-secondary">{{working_H}}</span></h5>
+                    
+                    
+                    
                     <div class="card">
                         <div class="caed-body">
                             <h5 class="card-title text-center " style="color: 504fec;">Working Hours</h5>
                             <div class="row text-center">
-                                <div class="col-sm-6">
-                                    <h5>MON - FRI</h5>
+                                <div class="col-sm-4">
+                                    <h5>Day</h5>
                                 </div>
-                                <div class="col-sm-6">
-                                    <h5><span class="badge bg-secondary">10am to 3pm</span></h5>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">Morning Hours</span></h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">Evening Hours</span></h5>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-4">
+                                    <h5>SunDay</h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{sunday_mor}}</span></h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{sunday_ev}}</span></h5>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-4">
+                                    <h5>MonDay</h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{monday_mor}}</span></h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{monday_ev}}</span></h5>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-4">
+                                    <h5>TuesDay</h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{tuesday_mor}}</span></h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{tuesday_ev}}</span></h5>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-4">
+                                    <h5>WednesDay</h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{wedday_mor}}</span></h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{wedday_ev}}</span></h5>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-4">
+                                    <h5>ThursDay</h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{thursday_mor}}</span></h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{thursday_ev}}</span></h5>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-4">
+                                    <h5>FriDay</h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{frday_mor}}</span></h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{frday_ev}}</span></h5>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-sm-4">
+                                    <h5>SaturDay</h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{satday_mor}}</span></h5>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h5><span class="badge bg-secondary">{{satday_ev}}</span></h5>
                                 </div>
                             </div>
                         </div>

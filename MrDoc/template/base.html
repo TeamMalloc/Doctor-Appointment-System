@@ -123,26 +123,256 @@
   </div>
   <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
     tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          this is doctor account
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
-            data-bs-dismiss="modal">Back to first</button>
-          <a href="/doctorAcc" class="btn btn-primary" tabindex="-1" role="button">Create Account</a>
+        <div class="modal-body ">
+          <p>Profile Details
+          </p>
+          <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/doctorAcc"  method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                         
+
+
+
+                        <div>
+                          <div class="d-flex justify-content-start mb-4">
+                              <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+                              class="rounded-circle" alt="example placeholder" style="width: 200px;" />
+                          </div>
+                          <div class="d-flex justify-content-start">
+                              <div class="btn btn-primary btn-rounded">
+                                  <label class="form-label text-white m-1"  for="customFile2">Choose file</label>
+                                  <input type="file" class="form-control  " id="customFile2" id="image" name="image" />
+                              </div>
+                          </div>
+                      </div>
+
+
+                        <br>
+
+                        <div class="input-group">
+                            <span class="input-group-text">First and last name</span>
+                            <input type="text" id="doctor_name" name="doctor_name" aria-label="doctor_name" class="form-control" required>
+                            
+                        </div>
+                        <div class="form-text">Your first name and last name &#128522;</div>
+
+                        <div class="input-group mt-3">
+                            <span class="input-group-text">Department</span>
+                            <input type="text" id="department" name="department" aria-label="department" class="form-control" required>
+                        </div>
+                        <div id="emailHelp" class="form-text">What is your department such as Dentist,General Physician,oculist etc.</div>
+
+                        <div class="input-group mt-3">
+                            <span class="input-group-text">Brife Intro</span>
+                            
+                                <textarea class="form-control" id="brife" name="brife" placeholder="Write Your introduction"
+                                required></textarea>
+                        </div>
+                        <div class="row mt-3">
+                            <div class=" col-6">
+                              <span class="input-group-text col-2">Location</span>
+                              <input type="text" class="form-control" id="location" name="location" placeholder=""
+                                  required>
+                            </div>
+                            <div class=" col-6">
+                              <span class="input-group-text col-3">working hour</span>
+                              <input type="text" class="form-control" id="working_H" name="working_H" placeholder=""
+                                  required>
+                            </div>
+                        </div>
+                        <div class="input-group mt-3">
+                          <span class="input-group-text">Clinic Details</span>
+                          <input type="text" class="form-control" id="clinicloc" name="clinicloc" placeholder=""
+                              required>
+                        </div>
+                        
+                        
+                           
+                        
+                        <div class="row mt-3">
+                              <div class="col-6 col-md-4">
+                                  <span class="input-group-text">New Patient Fees:</span>
+                                  <input type="text" id="doctor_name" name="nw_pat_fee" aria-label="nw_pat_fee" class="form-control" required>
+                                  
+                              </div>
+                              <!-- <div class="form-text">Your first name and last name &#128522;</div> -->
+
+                              <div class="col-6 col-md-4">
+                                  <span class="input-group-text">Returning Patient Fees:</span>
+                                  <input type="text" id="department" name="ret_pat_fee" aria-label="ret_pat_fee" class="form-control" required>
+                              </div>
+                          
+
+                              <div class=" col-6 col-md-4">
+                                  <span class="input-group-text">Follow up Report Fees:</span>
+                                  
+                                  <input type="text" id="department" name="repo_fee" aria-label="repo_fee" class="form-control" required>
+                              </div>
+                      </div>
+                        <div class="input-group mt-3">
+                          <span class="input-group-text">Languages Spoken</span>
+                          <input type="text" class="form-control" id="lag_spoken" name="lag_spoken" placeholder=""
+                              required>
+                        </div>
+                        
+                        <div class="input-group mt-2">
+                            <span class="input-group-text">Gender</span></div>
+                            <fieldset class="form-group">
+                              <div class="row">
+                                
+                                <div class="col-sm-10 mx-3" >
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender1" value="option1" checked>
+                                    <label class="form-check-label" for="gridRadios1">
+                                      Male
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gender" id="ggender2" value="option2">
+                                    <label class="form-check-label" for="gridRadios2">
+                                      Female
+                                    </label>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+                            </fieldset>
+
+                        </div>  
+                      <br>
+                      <p>Opening & Closing Hours
+                      </p>
+                      <div class="input-group">
+                          <span class="input-group-text">Sunday</span>
+                          
+                          <div class="form-group col-md-4">
+                            <!-- <label for="inputEmail4">Morning Hours</label> -->
+                            <input type="text" id="sunday_mor" name="sunday_mor" aria-label="sunday_mor" class="form-control" placeholder="Morning Hours" >
+                          </div>
+                          <div class="form-group col-md-4">
+                            <!-- <label for="inputPassword4">Evening Hours</label> -->
+                            <input type="text" id="sunday_ev" name="sunday_ev" aria-label="sunday_ev" class="form-control" placeholder="Evening Hours" >
+                          </div> 
+                      </div>
+                      
+                      <br>
+                      <div class="input-group">
+                        <span class="input-group-text">Monday</span>
+                        
+                        <div class="form-group col-md-4">
+                          <!-- <label for="inputEmail4">Morning Hours</label> -->
+                          <input type="text" id="monday_mor" name="monday_mor" aria-label="monday_mor" class="form-control" placeholder="Morning Hours" >
+                        </div>
+                        <div class="form-group col-md-4">
+                          <!-- <label for="inputPassword4">Evening Hours</label> -->
+                          <input type="text" id="monday_ev" name="monday_ev" aria-label="monday_ev" class="form-control" placeholder="Evening Hours" >
+                        </div> 
+                      </div>
+                  
+                      <br>
+                      <div class="input-group">
+                        <span class="input-group-text">Tuesday</span>
+                        
+                        <div class="form-group col-md-4">
+                          <!-- <label for="inputEmail4">Morning Hours</label> -->
+                          <input type="text" id="tuesday_mor" name="tuesday_mor" aria-label="tuesday_mor" class="form-control" placeholder="Morning Hours" >
+                        </div>
+                        <div class="form-group col-md-4">
+                          <!-- <label for="inputPassword4">Evening Hours</label> -->
+                          <input type="text" id="tuesday_ev" name="tuesday_ev" aria-label="tuesday_ev" class="form-control" placeholder="Evening Hours" >
+                        </div> 
+                      </div>
+
+
+                      <br>
+                      <div class="input-group">
+                        <span class="input-group-text">Wednesday</span>
+                        
+                        <div class="form-group col-md-4">
+                          <!-- <label for="inputEmail4">Morning Hours</label> -->
+                          <input type="text" id="wedday_mor" name="wedday_mor" aria-label="wedday_mor" class="form-control" placeholder="Morning Hours" >
+                        </div>
+                        <div class="form-group col-md-4">
+                          <!-- <label for="inputPassword4">Evening Hours</label> -->
+                          <input type="text" id="wedday_ev" name="wedday_ev" aria-label="wedday_ev" class="form-control" placeholder="Evening Hours" >
+                        </div> 
+                      </div>
+                      
+                      <br>
+                      <div class="input-group">
+                        <span class="input-group-text">Thursday</span>
+                        
+                        <div class="form-group col-md-4">
+                          <!-- <label for="inputEmail4">Morning Hours</label> -->
+                          <input type="text" id="thursday_mor" name="thursday_mor" aria-label="thursday_mor" class="form-control" placeholder="Morning Hours" >
+                        </div>
+                        <div class="form-group col-md-4">
+                          <!-- <label for="inputPassword4">Evening Hours</label> -->
+                          <input type="text" id="thursday_ev" name="thursday_ev" aria-label="thursday_ev" class="form-control" placeholder="Evening Hours" >
+                        </div> 
+                      </div>
+              
+                      <br>
+
+                      <div class="input-group">
+                        <span class="input-group-text">Friday</span>
+                        
+                        <div class="form-group col-md-4">
+                          <!-- <label for="inputEmail4">Morning Hours</label> -->
+                          <input type="text" id="frday_mor" name="frday_mor" aria-label="frday_mor" class="form-control" placeholder="Morning Hours" >
+                        </div>
+                        <div class="form-group col-md-4">
+                          <!-- <label for="inputPassword4">Evening Hours</label> -->
+                          <input type="text" id="frday_ev" name="frday_ev" aria-label="frday_ev" class="form-control" placeholder="Evening Hours" >
+                        </div> 
+                      </div>
+
+
+                      <br>
+                      <div class="input-group">
+                        <span class="input-group-text">Saturday</span>
+                        
+                        <div class="form-group col-md-4">
+                          <!-- <label for="inputEmail4">Morning Hours</label> -->
+                          <input type="text" id="satday_mor" name="satday_mor" aria-label="satday_mor" class="form-control" placeholder="Morning Hours" >
+                        </div>
+                        <div class="form-group col-md-4">
+                          <!-- <label for="inputPassword4">Evening Hours</label> -->
+                          <input type="text" id="satday_ev" name="satday_ev" aria-label="satday_ev" class="form-control" placeholder="Evening Hours" >
+                        </div> 
+                      </div>
+
+                      <br>
+                          <div class="modal-footer">
+                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
+                              data-bs-dismiss="modal">Back to first</button>
+                              
+                              <button class="btn btn-primary" data-bs-toggle="modal" type="submit">Create your account</button>        
+                          </div>
+                          
+                              <!-- <button class="btn btn-primary" data-bs-toggle="modal" type="submit">Create your account</button>        
+                       <button type="submit" class="btn btn-outline-primary mt-3">Register Now</button> -->
+                  </form>
+              </div>
+          </div>
         </div>
       </div>
+      
     </div>
   </div>
+</div>
+
   <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
     tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
@@ -150,16 +380,203 @@
         </div>
         <div class="modal-body">
           this is Patient account
+            <div class="container">
+              <div class"card">
+                <div class"card-body">
+                  <form action="/patientAcc" method="POST" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    {% comment %} this input will help for submitting multiple form {% endcomment %}
+                    <input type="hidden" name="form_type" value="formOne">
+                    <div>
+                      <div class="d-flex justify-content-start mb-4">
+                          <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+                          class="rounded-circle" alt="example placeholder" style="width: 200px;" />
+                      </div>
+                      <div class="d-flex justify-content-start">
+                          <div class="btn btn-primary btn-rounded">
+                              <label class="form-label text-white m-1"  for="customFile2">Choose file</label>
+                              <input type="file" class="form-control  " id="customFile2" id="pat_image" name="pat_image" />
+                          </div>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                      <span class="input-group-text">First and last name</span>
+                      <input type="text" id="pat_name" name="pat_name" aria-label="doctor_name" class="form-control" required>
+                      
+                    </div>
+                    <div class="form-text">Your first name and last name &#128522;</div>
+                    
+                    <div class="row mt-3">
+                      <div class=" col-6">
+                        <span class="input-group-text col-2">Age</span>
+                        <input type="text" class="form-control" id="pat_age" name="pat_age" placeholder=""
+                            required>
+                      </div>
+                      <div class=" col-6">
+                        <span class="input-group-text col-2">Location</span>
+                        <input type="text" class="form-control" id="pat_location" name="pat_location" placeholder=""
+                            required>
+                      </div>
+                        
+
+                      
+                    </div>   
+                    <div class=" col-6">
+                      <div class="input-group mt-2">
+                        <span class="input-group-text">Gender</span></div>
+                        <fieldset class="form-group">
+                          <div class="row">
+                            
+                            <div class="col-sm-10 mx-3" >
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="gender1" value="option1" checked>
+                                <label class="form-check-label" for="gridRadios1">
+                                  Male
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="ggender2" value="option2">
+                                <label class="form-check-label" for="gridRadios2">
+                                  Female
+                                </label>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+
+                      
+                    </div>
+                  
+                    <div class="input-group mt-3">
+                      <span class="input-group-text">Languages Spoken</span>
+                      <input type="text" class="form-control" id="pat_lag_spoken" name="pat_lag_spoken" placeholder=""
+                          required>
+                    </div>
+
+                    <div class="input-group mt-3">
+                      <span class="input-group-text">Occupation</span>
+                      <input type="text" class="form-control" id="pat_occu" name="pat_occu " placeholder=""
+                          required>
+                    </div>
+                    
+                    
+                    <br>
+                    <div class="modal-footer">
+                      <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
+                        data-bs-dismiss="modal">Back to first</button>
+                        
+                        <button class="btn btn-primary" data-bs-toggle="modal" type="submit">Create your account</button>        
+                    </div>
+                  </form> 
+
+
+
+                  
+                </div>
+              </div>
+            </div>
+
+
+          
+
+
+          <!-- end of modal body -->
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
-            data-bs-dismiss="modal">Back to first</button>
-          <a href="#" class="btn btn-primary" tabindex="-1" role="button">Create Account</a>
-        </div>
+        
+    
+    
+
+        
       </div>
     </div>
   </div>
   <!-- modal sends -->
+
+
+
+
+{% comment %} for health update {% endcomment %}
+  <div class="modal fade" id="exampleModalToggle4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        this is Patient account
+          <div class="container">
+            <div class"card">
+              <div class"card-body">
+                <form action="/patientAcc" method="POST" enctype="multipart/form-data">
+                  {%csrf_token%}
+                  {% comment %} this input will help for submitting multiple form {% endcomment %}
+                  <input type="hidden" name="form_type" value="formTwo">
+                  <div class="input-group">
+                    <span class="input-group-text">today</span>
+                    
+                    
+                  </div>
+                 
+                  
+                  <div class="row mt-3">
+                    <div class=" col-6">
+                      <span class="input-group-text col-7">Bllod Pressure</span>
+                      <input type="text" class="form-control" id="blood" name="blood" placeholder="120"
+                          required>
+                    </div>
+                    <div class=" col-6">
+                      <span class="input-group-text col-7">Bllod 2</span>
+                      <input type="text" class="form-control" id="bllod_2" name="bllod_2" placeholder="80"
+                          required>
+                    </div>
+                    <div class=" col-6">
+                      <span class="input-group-text col-6">Suger level</span>
+                      <input type="text" class="form-control" id="suger_lvl" name="suger_lvl" placeholder=""
+                          required>
+                    </div>
+                      
+
+                    
+                  </div>   
+                  
+                   
+                  
+                  
+                  <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
+                      data-bs-dismiss="modal">Back to first</button>
+                      
+                      <button class="btn btn-primary" data-bs-toggle="modal" type="submit">Update</button>        
+                  </div>
+                </form> 
+
+
+
+                
+              </div>
+            </div>
+          </div>
+
+
+        
+
+
+        <!-- end of modal body -->
+      </div>
+      
+  
+  
+
+      
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -178,6 +595,21 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   
+
+
+{% comment %} chat bot {% endcomment %}
+<script type="text/javascript">
+  (function(d, m){
+      var kommunicateSettings = 
+          {"appId":"646c010c4e4812ffd0d0eda7447b701e","popupWidget":true,"automaticChatOpenOnNavigation":true};
+      var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+      s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+      var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+      window.kommunicate = m; m._globals = kommunicateSettings;
+  })(document, window.kommunicate || {});
+/* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
+</script>
+
 
 
   <!-- Option 2: Separate Popper and Bootstrap JS -->

@@ -1,5 +1,6 @@
 from django.db import models
-
+import datetime
+import os
 # Create your models here.
 class RegUsers(models.Model):
     UserName = models.CharField(max_length = 122)
@@ -8,19 +9,65 @@ class RegUsers(models.Model):
     Email = models.EmailField(max_length=254)
     Password = models.IntegerField()
     CPassword = models.IntegerField()
+    Doc_pat = models.CharField(max_length = 122)
     Date = models.DateField()
 
     def __str__(self):
         return self.UserName
+
+
+def  filepath(request, filename):
+    old_filename=filename
+    
+    return os.path.join('upload/',filename)
+
+
 
 class NearBy_Doctor(models.Model):
     doctor_name = models.CharField(max_length=122)
     department = models.CharField(max_length=122)
     location = models.CharField(max_length=122)
     working_H = models.CharField(max_length=122)
-    
+    brife =models.TextField()
+    clinicloc = models.CharField( max_length=122)
+    nw_pat_fee = models.CharField( max_length=122)
+    ret_pat_fee = models.CharField( max_length=122)
+    repo_fee = models.CharField( max_length=122)
+    lag_spoken = models.CharField( max_length=122)
+    sunday_mor = models.CharField( max_length=122)
+    sunday_ev = models.CharField( max_length=122)
+    monday_mor = models.CharField( max_length=122)
+    monday_ev = models.CharField( max_length=122)
+    tuesday_mor = models.CharField( max_length=122)
+    tuesday_ev = models.CharField( max_length=122)
+    wedday_mor = models.CharField( max_length=122)
+    wedday_ev = models.CharField( max_length=122)
+    thursday_mor = models.CharField( max_length=122)
+    thursday_ev = models.CharField( max_length=122)
+    frday_mor = models.CharField( max_length=122)
+    frday_ev = models.CharField( max_length=122)
+    satday_mor = models.CharField( max_length=122)
+    satday_ev = models.CharField( max_length=122)
+    image=models.ImageField(upload_to="upload/", null=True,blank=True)
+
     def __str__(self):
         return self.doctor_name
+
+
+# for patient
+class patient(models.Model):
+    user=models.ForeignKey(RegUsers,null=True,on_delete=models.SET_NULL)
+    pat_image=models.ImageField(upload_to="upload/", null=True,blank=True)
+    pat_name =models.CharField( max_length=122)
+    pat_age=models.CharField( max_length=122)
+    pat_location=models.CharField( max_length=122)
+    pat_lag_spoken=models.CharField( max_length=122)
+    pat_occu=models.CharField( max_length=122)
+    
+
+    def __str__(self):
+        return self.pat_name
+
 
 # for book appointment
 class Appointment_List(models.Model):
@@ -40,5 +87,13 @@ class departments(models.Model):
     def __str__(self):
         return self.dep_name
     
+
+
+
+class health(models.Model):
+    blood= models.IntegerField()
+    bllod_2=models.IntegerField()
+    suger_lvl= models.IntegerField()
+    date = models.DateTimeField()
 
     

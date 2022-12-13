@@ -5,7 +5,7 @@ from django.urls import path
 from home import views
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('',views.home,name = 'home'),
     path('contact',views.contact,name = 'contact'),
     path('about',views.about,name = 'about'),
@@ -15,6 +15,7 @@ urlpatterns = [
     path('signout',views.signout,name = 'signout'),
     path('base',views.base,name = 'base'),
     path('doctorAcc',views.doctorAcc,name = 'doctorAcc'),
+    path('patientAcc',views.patientAcc,name = 'patientAcc'),
     path('NearByDoc',views.NearByDoc,name = 'NearByDoc'),
     path('emDoc',views.emDoc,name = 'emDoc'),
 

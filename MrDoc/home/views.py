@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
-from home.models import NearBy_Doctor, Appointment_List, departments
+
+from home.models import health,RegUsers, NearBy_Doctor, Appointment_List, departments,patient
 from django.contrib import messages
 
 # for user authticcation 
@@ -12,6 +13,7 @@ from django.contrib.auth import authenticate,login as authlogin,logout
 from email.message import EmailMessage
 import ssl
 import smtplib
+from django.template.response import TemplateResponse
 
 
 
@@ -81,6 +83,7 @@ def signUp(request):
         email = request.POST.get("email")
         fpass = request.POST.get("pass1")
         cpass = request.POST.get("pass2")
+        
 
         # validation for user
         if User.objects.filter(username=uname):
@@ -102,6 +105,9 @@ def signUp(request):
         if not uname.isalnum():
             messages.error(request,"Username must be alpha-numeric!")
             return redirect('signUp')
+
+
+        
         
 
 
@@ -122,19 +128,28 @@ def signUp(request):
         # confirmation message
 
         # return redirect('login')
+    
     return render(request,'signUp.html')
 
 def login(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("pass1")
+        doc_pat = request.POST.get("doc_pat")
 
         user = authenticate(request, username = username, password = password)
         if user is not None:
             authlogin(request, user)
             fname = user.first_name
             messages.success(request,'Thank You! Your are successfully logged in. Now you can create your desired account.')
-            return render(request, 'index.html', {'fname':fname})
+            doc='Doctor'
+            pat='Patient'
+
+            if doc == doc_pat:
+                return render(request, 'doctorAcc.html', {'fname':fname})
+            else:
+                return render(request, 'patientAcc.html', {'fname':fname})
+            
         
         else:
             messages.error(request, 'Bad request! Username or Password did not match. Try aging.')
@@ -148,11 +163,144 @@ def signout(request):
     messages.success(request,'Logged out successfully!')
     return redirect('home')
 
+def patientAcc(request):
+    if request.method == 'POST':
+        if request.POST.get("form_type") == 'formOne':
+            pat_image = request.POST.get("pat_image")
+            if len(request.FILES) !=0:
+                pat_image= request.FILES['pat_image']
+            
+            pat_name = request.POST.get("pat_name")
+            pat_age = request.POST.get("pat_age")
+            pat_location = request.POST.get("pat_location")
+            pat_lag_spoken = request.POST.get("pat_lag_spoken")
+            pat_occu = request.POST.get("pat_occu")
+            
+
+
+            # pat_name = user.first_name
+            pat_obj = patient(pat_image = pat_image, pat_name = pat_name, pat_age=pat_age,pat_location = pat_location,pat_lag_spoken = pat_lag_spoken,
+            pat_occu = pat_occu)
+            pat_obj.save()
+        
+            return render (request,'patientAcc.html',{'pat_image':pat_image,'pat_name':pat_name,'pat_age':pat_age,'pat_location':pat_location,'pat_lag_spoken':pat_lag_spoken,'pat_occu':pat_occu})
+        elif request.POST.get("form_type") == 'formTwo':
+            blood = request.POST.get("blood")
+            bllod_2 = request.POST.get("bllod_2")
+            suger_lvl = request.POST.get("suger_lvl")
+            dat=datetime.today()
+
+            pat_health = health(blood=blood,bllod_2=bllod_2,suger_lvl=suger_lvl,date=dat)
+
+            if int(blood) > 120 and int(bllod_2) > 80:
+                condition='High BP!!';
+            elif int(blood) < 120 and int(bllod_2) < 80:
+                condition='low BP!!';
+            elif int(blood) > 120 and int(bllod_2) < 80 or int(blood) < 120 and int(bllod_2) > 80:
+                condition='Critical conditio';
+                
+            
+
+            
+            pat_health.save()
+            return TemplateResponse (request,'patientAcc.html',{'blood':blood,'bllod_2':bllod_2,'suger_lvl':suger_lvl, 'condition':condition})
+
+        
+    return render (request,'patientAcc.html')
+    # fname = user.first_name
+    
+    # print(user)
+        
+    
+
+    
+
 
 # for doctor account
-def doctorAcc(request):
-    return render(request,'doctorAcc.html')
+def doctorAcc(request):    
+    if request.method == "POST":
+        docname = request.POST.get("doctor_name")
+        department = request.POST.get("department")
+        location = request.POST.get("location")
+        working_H = request.POST.get("working_H")
+        brife = request.POST.get("brife")
+        clinicloc = request.POST.get("clinicloc")
+        nw_pat_fee = request.POST.get("nw_pat_fee")
+        ret_pat_fee = request.POST.get("ret_pat_fee")
+        repo_fee = request.POST.get("repo_fee")
+        lag_spoken = request.POST.get("lag_spoken")
+        sunday_mor = request.POST.get("sunday_mor")
+        sunday_ev = request.POST.get("sunday_ev")
+        monday_mor = request.POST.get("monday_mor")
+        monday_ev = request.POST.get("monday_ev")
+        tuesday_mor = request.POST.get("tuesday_mor")
+        tuesday_ev = request.POST.get("tuesday_ev")
+        wedday_mor = request.POST.get("wedday_mor")
+        wedday_ev = request.POST.get("wedday_ev")
+        thursday_mor = request.POST.get("thursday_mor")
+        thursday_ev = request.POST.get("thursday_ev")
+        frday_mor = request.POST.get("frday_mor")
+        frday_ev = request.POST.get("frday_ev")
+        satday_mor = request.POST.get("satday_mor")
+        satday_ev = request.POST.get("satday_ev")
+        image=request.POST.get("image")
+        if len(request.FILES) !=0:
+            image= request.FILES['image']
 
+
+        obj = NearBy_Doctor(doctor_name = docname, department = department, location=location,working_H = working_H,brife = brife,clinicloc = clinicloc,nw_pat_fee = nw_pat_fee
+        ,ret_pat_fee = ret_pat_fee,repo_fee = repo_fee,lag_spoken = lag_spoken,sunday_mor = sunday_mor,sunday_ev = sunday_ev
+        ,monday_mor = monday_mor,monday_ev = monday_ev,tuesday_mor = tuesday_mor,tuesday_ev = tuesday_ev,wedday_mor = wedday_mor
+        ,wedday_ev = wedday_ev,thursday_mor = thursday_mor,thursday_ev = thursday_ev,frday_mor = frday_mor
+        ,frday_ev = frday_ev,satday_mor = satday_mor,satday_ev = satday_ev,image = image)
+
+        
+       
+       
+        obj.save()
+
+
+        return render(request,'doctorAcc.html',{'docname':docname,'department':department,'location':location,'working_H':working_H,'brife':brife,'clinicloc':clinicloc
+        ,'nw_pat_fee':nw_pat_fee,'ret_pat_fee':ret_pat_fee,'repo_fee':repo_fee,'lag_spoken':lag_spoken,'sunday_mor':sunday_mor
+        ,'monday_mor':monday_mor,'monday_mor':monday_mor,'monday_ev':monday_ev,'tuesday_mor':tuesday_mor,'tuesday_ev':tuesday_ev,'wedday_mor':wedday_mor
+        ,'wedday_ev':wedday_ev,'thursday_mor':thursday_mor,'thursday_ev':thursday_ev,'frday_mor':frday_mor,'frday_ev':frday_ev,'satday_mor':satday_mor,'satday_ev':satday_ev,'image':image})
+
+    #     return redirect ('doctorAcc', {'docname':docname,'department':department,'location':location,'working_H':working_H,'brife':brife,'clinicloc':clinicloc
+    #         ,'nw_pat_fee':nw_pat_fee,'ret_pat_fee':ret_pat_fee,'repo_fee':repo_fee,'lag_spoken':lag_spoken,'sunday_mor':sunday_mor
+    #         ,'monday_mor':monday_mor,'monday_mor':monday_mor,'monday_ev':monday_ev,'tuesday_mor':tuesday_mor,'tuesday_ev':tuesday_ev,'wedday_mor':wedday_mor
+    #         ,'wedday_ev':wedday_ev,'thursday_mor':thursday_mor,'thursday_ev':thursday_ev,'frday_mor':frday_mor,'frday_ev':frday_ev,'satday_mor':satday_mor,'satday_ev':satday_ev,'image':image} )
+
+
+
+    # if request.method =="GET":
+        # docname = NearBy_Doctor.doctor_name
+        # # docname = request.GET.get("doctor_name")
+        # department = request.GET.get("department")
+        # location = request.GET.get("location")
+        # working_H = request.GET.get("working_H")
+        # brife = request.GET.get("brife")
+        # clinicloc = request.GET.get("clinicloc")
+        # nw_pat_fee = request.GET.get("nw_pat_fee")
+        # ret_pat_fee = request.GET.get("ret_pat_fee")
+        # repo_fee = request.GET.get("repo_fee")
+        # lag_spoken = request.GET.get("lag_spoken")
+        # sunday_mor = request.GET.get("sunday_mor")
+        # sunday_ev = request.GET.get("sunday_ev")
+        # monday_mor = request.GET.get("monday_mor")
+        # monday_ev = request.GET.get("monday_ev")
+        # tuesday_mor = request.GET.get("tuesday_mor")
+        # tuesday_ev = request.GET.get("tuesday_ev")
+        # wedday_mor = request.GET.get("wedday_mor")
+        # wedday_ev = request.GET.get("wedday_ev")
+        # thursday_mor = request.GET.get("thursday_mor")
+        # thursday_ev = request.GET.get("thursday_ev")
+        # frday_mor = request.GET.get("frday_mor")
+        # frday_ev = request.GET.get("frday_ev")
+        # satday_mor = request.GET.get("satday_mor")
+        # satday_ev = request.GET.get("satday_ev")
+        # image=request.GET.get("image")
+
+        
 # for NearByDoc
 def NearByDoc(request):
     nr = None
