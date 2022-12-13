@@ -291,7 +291,7 @@
             {% for d in dep %}
             <a href="#" class="list-group-item list-group-item-action">{{d.dep_name}}</a>
             {% endfor %}
-            {% endif %}            
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -304,7 +304,7 @@
         </div>
         <div class="owl-carousel owl-theme">
           <div class="item">
-            <div class="card border-0 shadow" >
+            <div class="card border-0 shadow">
               <img src="../static/img/owl1.jpg" alt="" style="height: 162px;">
               <div class="card-body">
                 <h4>Ophthalmologists</h4>
@@ -315,7 +315,7 @@
           </div>
           <!-- item ends -->
           <div class="item">
-            <div class="card border-0 shadow" >
+            <div class="card border-0 shadow">
               <img src="../static/img/owl2.png" alt="" style="height: 162px;">
               <div class="card-body">
                 <h4>Endocrinologists</h4>
@@ -374,7 +374,7 @@
               </div>
             </div>
           </div>
-      </div>
+        </div>
 
 
       </div>
@@ -382,6 +382,42 @@
   </div>
 </div>
 <!-- departmenst section ends -->
+<!-- review section starts -->
+<div class="review pt-5 pb-5">
+  <div class="container">
+    
+    <h4 class="card-title alert alert-primary p-3 text-center">Our clients say</h4>
+    
+    <div class="owl-carousel owl-theme">
+      {% if re %}
+      {% for rev in re %}
+      <div class="item">
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="../static/img/emdoc1.svg" class="img-fluid rounded-start" alt="..." style="width: 100%;
+            height: 14vw;object-fit: cover;">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{rev.name}}</h5>
+                <p class="card-text">{{rev.reviews}}</p>
+                <p class="card-text"><small class="text-muted">Published at : {{rev.time}}</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- item ends -->
+      {% endfor %}
+      {% endif %}
+
+    </div>
+
+  </div>
+</div>
+<!-- review section ends -->
+
 
 <!-- footer section -->
 <div class="footer">

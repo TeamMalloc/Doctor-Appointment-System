@@ -1,0 +1,120 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'yummy/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'yummy/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'yummy/assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'yummy/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'yummy/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- local css -->
+  <link href="{% static 'yummy/assets/css/main.css' %}" rel="stylesheet">
+
+
+  <title>dumplings food</title>
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>Yummy<span>.</span></h1>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+
+          <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              <li><a href="/thai">THAI</a></li>
+              <li><a href="/indian">INDIAN</a></li>
+              <li><a href="/dumplings">DUMPLINGS</a></li>
+              <li><a href="/continental">CONTINENTAL</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </nav><!-- .navbar -->
+
+      <a class="btn-book-a-table" href="{% url 'home' %}">Book a Table</a>
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section style="background-color: #eeeeee;">
+    <div class="thaiP">
+      <div class="thaiTe p-3 mt-5">
+        <h1 class="text-center" data-aos="fade-up" style="font-family: var(--font-primary);font-size: 64px; color: #37373f;">Dumplings</h1>
+        <h4 class="text-center pt-3" data-aos="fade-up" style="color: #4f4f5a;">Beast kind of dumplings that you can give your self.</h4>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero Section -->
+  <!-- ========= thsi food section =========== -->
+  <div class="thaiFood">
+    <div class="container">
+      <div class="thaifoodtitle p-3 text-center">
+        <h3 style="color: #4f4f5a;">New Items</h3>
+        <hr>
+      </div>
+    </div>
+  </div>
+  <!-- end thai food section -->
+
+
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'yummy/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'yummy/assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'yummy/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'yummy/assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'yummy/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'yummy/assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'yummy/assets/js/main.js' %}"></script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

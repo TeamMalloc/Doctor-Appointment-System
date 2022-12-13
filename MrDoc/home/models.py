@@ -1,6 +1,5 @@
 from django.db import models
-import datetime
-import os
+
 # Create your models here.
 class RegUsers(models.Model):
     UserName = models.CharField(max_length = 122)
@@ -86,6 +85,29 @@ class departments(models.Model):
     dep_name = models.CharField(max_length=50)
     def __str__(self):
         return self.dep_name
+    
+#for review section
+class reviewers(models.Model):
+    name = models.CharField(max_length=50)
+    reviews = models.CharField(max_length=200)
+    time = models.DateTimeField()
+    def __str__(self):
+        return self.name
+
+# for rating section
+class rating(models.Model):
+    name = models.CharField(max_length=50)
+    score = models.IntegerField(default=0,
+    validators=[
+        MaxValueValidator(5),
+        MinValueValidator(0),
+    ]
+    
+    )
+
+    def __str__(self):
+        return self.name
+    
     
 
 

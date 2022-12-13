@@ -1,7 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
-
-from home.models import health,RegUsers, NearBy_Doctor, Appointment_List, departments,patient
+from home.models import NearBy_Doctor, Appointment_List, departments
 from django.contrib import messages
 
 # for user authticcation 
@@ -13,7 +12,6 @@ from django.contrib.auth import authenticate,login as authlogin,logout
 from email.message import EmailMessage
 import ssl
 import smtplib
-from django.template.response import TemplateResponse
 
 
 
@@ -217,90 +215,9 @@ def patientAcc(request):
 
 
 # for doctor account
-def doctorAcc(request):    
-    if request.method == "POST":
-        docname = request.POST.get("doctor_name")
-        department = request.POST.get("department")
-        location = request.POST.get("location")
-        working_H = request.POST.get("working_H")
-        brife = request.POST.get("brife")
-        clinicloc = request.POST.get("clinicloc")
-        nw_pat_fee = request.POST.get("nw_pat_fee")
-        ret_pat_fee = request.POST.get("ret_pat_fee")
-        repo_fee = request.POST.get("repo_fee")
-        lag_spoken = request.POST.get("lag_spoken")
-        sunday_mor = request.POST.get("sunday_mor")
-        sunday_ev = request.POST.get("sunday_ev")
-        monday_mor = request.POST.get("monday_mor")
-        monday_ev = request.POST.get("monday_ev")
-        tuesday_mor = request.POST.get("tuesday_mor")
-        tuesday_ev = request.POST.get("tuesday_ev")
-        wedday_mor = request.POST.get("wedday_mor")
-        wedday_ev = request.POST.get("wedday_ev")
-        thursday_mor = request.POST.get("thursday_mor")
-        thursday_ev = request.POST.get("thursday_ev")
-        frday_mor = request.POST.get("frday_mor")
-        frday_ev = request.POST.get("frday_ev")
-        satday_mor = request.POST.get("satday_mor")
-        satday_ev = request.POST.get("satday_ev")
-        image=request.POST.get("image")
-        if len(request.FILES) !=0:
-            image= request.FILES['image']
+def doctorAcc(request):
+    return render(request,'doctorAcc.html')
 
-
-        obj = NearBy_Doctor(doctor_name = docname, department = department, location=location,working_H = working_H,brife = brife,clinicloc = clinicloc,nw_pat_fee = nw_pat_fee
-        ,ret_pat_fee = ret_pat_fee,repo_fee = repo_fee,lag_spoken = lag_spoken,sunday_mor = sunday_mor,sunday_ev = sunday_ev
-        ,monday_mor = monday_mor,monday_ev = monday_ev,tuesday_mor = tuesday_mor,tuesday_ev = tuesday_ev,wedday_mor = wedday_mor
-        ,wedday_ev = wedday_ev,thursday_mor = thursday_mor,thursday_ev = thursday_ev,frday_mor = frday_mor
-        ,frday_ev = frday_ev,satday_mor = satday_mor,satday_ev = satday_ev,image = image)
-
-        
-       
-       
-        obj.save()
-
-
-        return render(request,'doctorAcc.html',{'docname':docname,'department':department,'location':location,'working_H':working_H,'brife':brife,'clinicloc':clinicloc
-        ,'nw_pat_fee':nw_pat_fee,'ret_pat_fee':ret_pat_fee,'repo_fee':repo_fee,'lag_spoken':lag_spoken,'sunday_mor':sunday_mor
-        ,'monday_mor':monday_mor,'monday_mor':monday_mor,'monday_ev':monday_ev,'tuesday_mor':tuesday_mor,'tuesday_ev':tuesday_ev,'wedday_mor':wedday_mor
-        ,'wedday_ev':wedday_ev,'thursday_mor':thursday_mor,'thursday_ev':thursday_ev,'frday_mor':frday_mor,'frday_ev':frday_ev,'satday_mor':satday_mor,'satday_ev':satday_ev,'image':image})
-
-    #     return redirect ('doctorAcc', {'docname':docname,'department':department,'location':location,'working_H':working_H,'brife':brife,'clinicloc':clinicloc
-    #         ,'nw_pat_fee':nw_pat_fee,'ret_pat_fee':ret_pat_fee,'repo_fee':repo_fee,'lag_spoken':lag_spoken,'sunday_mor':sunday_mor
-    #         ,'monday_mor':monday_mor,'monday_mor':monday_mor,'monday_ev':monday_ev,'tuesday_mor':tuesday_mor,'tuesday_ev':tuesday_ev,'wedday_mor':wedday_mor
-    #         ,'wedday_ev':wedday_ev,'thursday_mor':thursday_mor,'thursday_ev':thursday_ev,'frday_mor':frday_mor,'frday_ev':frday_ev,'satday_mor':satday_mor,'satday_ev':satday_ev,'image':image} )
-
-
-
-    # if request.method =="GET":
-        # docname = NearBy_Doctor.doctor_name
-        # # docname = request.GET.get("doctor_name")
-        # department = request.GET.get("department")
-        # location = request.GET.get("location")
-        # working_H = request.GET.get("working_H")
-        # brife = request.GET.get("brife")
-        # clinicloc = request.GET.get("clinicloc")
-        # nw_pat_fee = request.GET.get("nw_pat_fee")
-        # ret_pat_fee = request.GET.get("ret_pat_fee")
-        # repo_fee = request.GET.get("repo_fee")
-        # lag_spoken = request.GET.get("lag_spoken")
-        # sunday_mor = request.GET.get("sunday_mor")
-        # sunday_ev = request.GET.get("sunday_ev")
-        # monday_mor = request.GET.get("monday_mor")
-        # monday_ev = request.GET.get("monday_ev")
-        # tuesday_mor = request.GET.get("tuesday_mor")
-        # tuesday_ev = request.GET.get("tuesday_ev")
-        # wedday_mor = request.GET.get("wedday_mor")
-        # wedday_ev = request.GET.get("wedday_ev")
-        # thursday_mor = request.GET.get("thursday_mor")
-        # thursday_ev = request.GET.get("thursday_ev")
-        # frday_mor = request.GET.get("frday_mor")
-        # frday_ev = request.GET.get("frday_ev")
-        # satday_mor = request.GET.get("satday_mor")
-        # satday_ev = request.GET.get("satday_ev")
-        # image=request.GET.get("image")
-
-        
 # for NearByDoc
 def NearByDoc(request):
     nr = None
@@ -324,4 +241,24 @@ def base(request):
     
     return render(request,'base.html')
 
+def review(request):
+    if request.method == "POST":
+        na = request.POST.get("name")
+        revi = request.POST.get("rev")
+        dat=datetime.today()
+        RE = reviewers(name=na,reviews=revi,time=dat)
+        RE.save()
+        return TemplateResponse(request, 'index.html', {"re":reviewers.objects.all()})
+    return render(request,'review.html',)
 
+def rateing(request):
+    obj = rating.objects.filter(score=0).order_by("?").first()
+    context={
+        "obj" : obj,
+    }
+
+    return render(request,'rateing.html',context)
+
+        
+
+    
