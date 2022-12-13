@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
-from home.models import NearBy_Doctor, Appointment_List, departments, doctorAccount
+from home.models import NearBy_Doctor, Appointment_List, departments,reviewers,rating
 from django.contrib import messages
 
 # for user authticcation 
@@ -12,6 +12,8 @@ from django.contrib.auth import authenticate,login as authlogin,logout
 from email.message import EmailMessage
 import ssl
 import smtplib
+from django.template.response import TemplateResponse
+
 
 
 
@@ -108,7 +110,6 @@ def signUp(request):
         my_user = User.objects.create_user(uname,email,fpass)
         my_user.first_name = fname
         my_user.last_name = lname
-        my_user.username = uname
 
         my_user.save()
 
@@ -152,33 +153,8 @@ def signout(request):
 
 # for doctor account
 def doctorAcc(request):
-    uname = None
-    he = None
-    if request.method == "POST":
-        usname = request.POST.get("username")
-        name = request.POST.get("name")
-        depname = request.POST.get("dep")
-        clinic = request.POST.get("cli")
-        degree = request.POST.get("deg")
-        district = request.POST.get("dis")
-        charge = request.POST.get("char")
-        language = request.POST.get("lang")
-
-        uname = usname
-
-        docAcc = doctorAccount(username=usname,name=name,depName=depname,Clinic=clinic,Degree=degree,district=district,charge=charge,langauge=language)
-        docAcc.save()
-
-
-    he = User.USERNAME_FIELD.title
-    print(he)
-    if he == uname:
-        messages.success(request,"Your account is successfully created")
-        return render(request,'doctorAcc.html')
-    else:
-        messages.error(request,"username did not match. Pleasse try again! ")
-        return redirect('home')
     
+    return render(request,'doctorAcc.html')
 
 # for NearByDoc
 def NearByDoc(request):
@@ -204,6 +180,23 @@ def base(request):
     return render(request,'base.html')
 
 def review(request):
-    return render(request,'review.html')
+    if request.method == "POST":
+        na = request.POST.get("name")
+        revi = request.POST.get("rev")
+        dat=datetime.today()
+        RE = reviewers(name=na,reviews=revi,time=dat)
+        RE.save()
+        return TemplateResponse(request, 'index.html', {"re":reviewers.objects.all()})
+    return render(request,'review.html',)
 
+def rateing(request):
+    obj = rating.objects.filter(score=0).order_by("?").first()
+    context={
+        "obj" : obj,
+    }
 
+    return render(request,'rateing.html',context)
+
+        
+
+    

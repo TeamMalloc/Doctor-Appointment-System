@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator,MinValueValidator
 
 # Create your models here.
 class RegUsers(models.Model):
@@ -41,26 +41,28 @@ class departments(models.Model):
     def __str__(self):
         return self.dep_name
 
-# Doctor account:
-class doctorAccount(models.Model):
-    username = models.CharField(max_length=50)
+#for review section
+class reviewers(models.Model):
     name = models.CharField(max_length=50)
-    depName = models.CharField(max_length=100)
-    Clinic = models.CharField(max_length=120)
-    Degree = models.CharField(max_length=100)
-    district = models.CharField(max_length=50)
-    charge = models.IntegerField()
-    langauge = models.CharField(max_length=100)
+    reviews = models.CharField(max_length=200)
+    time = models.DateTimeField()
     def __str__(self):
         return self.name
 
-# Review section:
-class review(models.Model):
+# for rating section
+class rating(models.Model):
     name = models.CharField(max_length=50)
-    reviews = models.CharField(max_length=200)
-    time = models.TimeField()
+    score = models.IntegerField(default=0,
+    validators=[
+        MaxValueValidator(5),
+        MinValueValidator(0),
+    ]
     
+    )
 
+    def __str__(self):
+        return self.name
+    
     
 
     

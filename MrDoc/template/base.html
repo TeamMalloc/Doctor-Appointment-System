@@ -130,51 +130,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <!-- doctor account -->
-          <form action="/doctorAcc" method="POST">
-            {% csrf_token %}
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">Username</span>
-              <input type="text" class="form-control" placeholder="Write your Username" aria-label="Username" aria-describedby="basic-addon1" name="username" id="username">
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">Name</span>
-              <input type="text" class="form-control" placeholder="Your name" aria-label="Username" aria-describedby="basic-addon1" name="name" id="name">
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">Department Name</span>
-              <input type="text" class="form-control" placeholder="Your Department" aria-label="Username" aria-describedby="basic-addon1" name="dep" id="dep">
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">Clinic</span>
-              <input type="text" class="form-control" placeholder="Username" aria-label="Write Your chambar name" aria-describedby="basic-addon1" name="cli" id="cli">
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">Your Degree</span>
-              <input type="text" class="form-control" placeholder="Degree" aria-label="Username" aria-describedby="basic-addon1" name="deg" id="deg">
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">District</span>
-              <input type="text" class="form-control" placeholder="Your District" aria-label="Username" aria-describedby="basic-addon1" name="dis" id="dis">
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">Your charge</span>
-              <input type="text" class="form-control" placeholder="How much?" aria-label="Username" aria-describedby="basic-addon1" name="char" id="char">
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">Languages</span>
-              <input type="text" class="form-control" placeholder="Do you know multiple Languages" aria-label="Username" aria-describedby="basic-addon1" name="lang" id="lang">
-            </div>
-
-          
+          this is doctor account
         </div>
         <div class="modal-footer">
           <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
             data-bs-dismiss="modal">Back to first</button>
-          <button class="btn btn-outline-primary" type="submit">Create Account</button>
+          <a href="/doctorAcc" class="btn btn-primary" tabindex="-1" role="button">Create Account</a>
         </div>
-      </form>
-
       </div>
     </div>
   </div>

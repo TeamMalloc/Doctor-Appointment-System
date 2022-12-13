@@ -20,13 +20,13 @@
             {% csrf_token %}
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Name</span>
-                <input type="text" class="form-control" placeholder="name" aria-label="Username"
-                    aria-describedby="basic-addon1">
+                <input type="text" class="form-control" placeholder="Your name" aria-label="Username"
+                    aria-describedby="basic-addon1" name="name" id="name">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Your review</span>
                 <input type="text" class="form-control" placeholder="review here" aria-label="Username"
-                    aria-describedby="basic-addon1">
+                    aria-describedby="basic-addon1" name="rev" id="rev">
             </div>
             <button type="submit" class="btn btn-outline-primary mt-3">Submit</button>
 

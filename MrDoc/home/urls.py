@@ -17,8 +17,8 @@ urlpatterns = [
     path('doctorAcc',views.doctorAcc,name = 'doctorAcc'),
     path('NearByDoc',views.NearByDoc,name = 'NearByDoc'),
     path('emDoc',views.emDoc,name = 'emDoc'),
-    path('review', views.review,name='review')
-
+    path('review',views.review,name = 'review'),
+    path('rateing',views.rateing,name = 'rateing')
 
 ]
 
