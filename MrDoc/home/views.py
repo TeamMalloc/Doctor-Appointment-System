@@ -2,6 +2,10 @@ from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
 from home.models import NearBy_Doctor, Appointment_List, departments
 from django.contrib import messages
+# from home.models import Faq
+from .forms import FAQForm
+from .forms import AnswerForm
+from django.shortcuts import get_object_or_404
 
 # for user authticcation 
 from django.contrib.auth.models import User
@@ -261,4 +265,71 @@ def rateing(request):
 
         
 
+#--- FAQ Section for user ----#
+def faq(request):
+    # # faqs = Faq.objects.get(id=1)
+    # context = {'faqs': faqs}
     
+    # # print(Faq.question)
+    # # print(Faq.answer)
+    # return render(request, 'faq.html', context)
+    fn = User.first_name
+    return render(request,'faq.html',{'fname':fn})
+    
+    
+from django.shortcuts import render
+from .models import FAQ
+
+def faq_view(request):
+    faqs = FAQ.objects.all()
+    return render(request, 'faq.html', {'faqs': faqs})
+
+def submit_question(request):
+    if request.method == 'POST':
+        form = FAQForm(request.POST)
+        if form.is_valid():
+            question = form.cleaned_data['question']
+            faq = FAQ(question=question)
+            faq.save()
+            return redirect('faq')
+    else:
+        form = FAQForm()
+    return render(request, 'faq.html', {'form': form})
+
+# FAQ for admin response
+def admin_view(request):
+    faqs = FAQ.objects.all()
+    return render(request, 'admin.html', {'faqs': faqs})
+
+def answer_question(request, pk):
+    # faq = get_object_or_404(FAQ, pk=pk)
+    # if request.method == 'POST':
+    #     form = AnswerForm(request.POST)
+    #     if form.is_valid():
+    #         answer = form.cleaned_data['answer']
+    #         faq.answer = answer
+    #         faq.save()
+    #         return redirect('admin')
+    # else:
+    #     form = AnswerForm()
+    faq = get_object_or_404(FAQ, pk=pk)
+    if request.user.is_superuser or request.user == faq.user:
+        if request.method == 'POST':
+            form = AnswerForm(request.POST)
+            if form.is_valid():
+                answer = form.cleaned_
+    return render(request, 'admin.html', {'form': form})
+
+
+
+def delete_question(request, pk):
+    faq = get_object_or_404(FAQ, pk=pk)
+    faq.deleted = True
+    faq.save()
+    return redirect('admin')
+
+def delete_question(request, pk):
+    faq = get_object_or_404(FAQ, pk=pk)
+    faq.deleted = True
+    faq.save()
+    return redirect('admin')

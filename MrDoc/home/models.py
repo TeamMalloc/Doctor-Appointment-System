@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import User
 
 # Create your models here.
 class RegUsers(models.Model):
@@ -119,3 +121,17 @@ class health(models.Model):
     date = models.DateTimeField()
 
     
+
+
+#----- Dynamic FAQ Section ------#
+# class Faq(models.Model):
+#     question = models.CharField(max_length=200)
+#     answer = models.TextField()
+#     category = models.CharField(max_length=50)
+#     date_asked = models.DateTimeField()
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=255)
+    answer = models.TextField()
+    deleted = models.BooleanField(default=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)

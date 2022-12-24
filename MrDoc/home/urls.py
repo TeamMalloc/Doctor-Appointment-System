@@ -19,7 +19,13 @@ urlpatterns = [
     path('NearByDoc',views.NearByDoc,name = 'NearByDoc'),
     path('emDoc',views.emDoc,name = 'emDoc'),
     path('review',views.review,name = 'review'),
-    path('rateing',views.rateing,name = 'rateing')
+    path('rateing',views.rateing,name = 'rateing'),
+    # path('faq', views.faq, name = 'faq')
+    path('faq/', views.faq_view, name='faq'),
+    path('faq/submit/', views.submit_question, name='submit_question'),
+    path('faq/answer/<int:pk>/', views.answer_question, name='answer_question'),
+    path('faq/delete/<int:pk>/', views.delete_question, name='delete_question'),
+
 
 ]
 
