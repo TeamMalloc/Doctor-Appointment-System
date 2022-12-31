@@ -7,6 +7,11 @@ from .forms import FAQForm
 from .forms import AnswerForm
 from django.shortcuts import get_object_or_404
 
+# for patient list
+from .models import PatientList
+from .models import patient
+
+
 # for user authticcation 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login as authlogin,logout
@@ -220,7 +225,7 @@ def patientAcc(request):
 
 # for doctor account
 def doctorAcc(request):
-    return render(request,'doctorAcc.html')
+    return render(request,'doctorAcc.html', {'patients': patient.objects.all()})
 
 # for NearByDoc
 def NearByDoc(request):
@@ -333,3 +338,16 @@ def delete_question(request, pk):
     faq.deleted = True
     faq.save()
     return redirect('admin')
+
+
+# Patient list
+
+
+# def doctorPatient(request):
+#     # patient_list_instance = PatientList.objects.get(pk=1)
+#     # patient_instance = patient_list_instance.patient_profile
+#     # patient_name = patient_instance.pat_name
+#     # patient_age = patient_instance.pat_age
+#     # patients = patient.objects.all()
+#     return render(request, 'doctorAcc.html', {'patients': patient.objects.all()})
+#     # do something with the patient name and age

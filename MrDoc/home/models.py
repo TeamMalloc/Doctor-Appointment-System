@@ -135,3 +135,13 @@ class FAQ(models.Model):
     answer = models.TextField()
     deleted = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+
+
+
+# patient list 
+# in your models.py file
+
+class PatientList(models.Model):
+    patient_profile = models.ForeignKey(patient, on_delete=models.CASCADE)
+    # other fields for the PatientList model
