@@ -20,6 +20,20 @@ urlpatterns = [
     path('emDoc',views.emDoc,name = 'emDoc'),
     path('review',views.review,name = 'review'),
     path('rateing',views.rateing,name = 'rateing'),
+    
+    # for Department wise doctor list 
+    # path('docDept', views.docDept, name='Doctors Profile'), 
+    path('Ophthalmologists', views.Ophthalmologists, name='Ophthalmologists Doctors Profile'),
+    path('Endocrinologists', views.Endocrinologists, name='Endocrinologists Doctors Profile'),
+    path('Gastroenterologists', views.Gastroenterologists, name='Gastroenterologists Doctors Profile'),
+    path('Cardiologists', views.Cardiologists, name='Cardiologists Doctors Profile'),
+    path('Psychiatry', views.Psychiatry, name='Psychiatry Doctors Profile'),
+    path('Orthopedics', views.Orthopedics, name='Orthopedics Doctors Profile'),
+    path('Pediatrics', views.Pediatrics, name='Pediatrics Doctors Profile'),
+    
+    
+    
+    
     # path('faq', views.faq, name = 'faq')
     path('faq/', views.faq_view, name='faq'),
     path('faq/submit/', views.submit_question, name='submit_question'),

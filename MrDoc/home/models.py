@@ -85,6 +85,7 @@ class Appointment_List(models.Model):
 #For departments
 class departments(models.Model):
     dep_name = models.CharField(max_length=50)
+    
     def __str__(self):
         return self.dep_name
     

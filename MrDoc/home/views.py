@@ -10,6 +10,8 @@ from django.shortcuts import get_object_or_404
 # for patient list
 from .models import PatientList
 from .models import patient
+from .models import departments
+from .models import NearBy_Doctor
 
 
 # for user authticcation 
@@ -339,15 +341,85 @@ def delete_question(request, pk):
     faq.save()
     return redirect('admin')
 
+# Department Doctors List
+def docDept(request):
+    department_name = 'Ophthalmologists'
+    doctors = NearBy_Doctor.objects.filter(department=department_name)
+    
+   # Psychiatry = 'Psychiatry'
+   # Psychiatry_doctors = NearBy_Doctor.objects.filter(department=Psychiatry)
+    
+    context = {
+        'doctors': doctors
+    }
+    # context2 = {
+    #     'doctors': Psychiatry_doctors
+    # }
+    
+    return render(request, 'doctorDepartments.html', context)
+   # return render(request,'doctorDepartments.html')
 
-# Patient list
+def Ophthalmologists(request):
+    department_name = 'Ophthalmologists'
+    doctors = NearBy_Doctor.objects.filter(department=department_name)
+    
+    context = {
+        'doctors': doctors
+    }
+    return render(request, 'DoctorProfile/Ophthalmologists.html', context)
 
 
-# def doctorPatient(request):
-#     # patient_list_instance = PatientList.objects.get(pk=1)
-#     # patient_instance = patient_list_instance.patient_profile
-#     # patient_name = patient_instance.pat_name
-#     # patient_age = patient_instance.pat_age
-#     # patients = patient.objects.all()
-#     return render(request, 'doctorAcc.html', {'patients': patient.objects.all()})
-#     # do something with the patient name and age
+def Endocrinologists(request):
+    department_name = 'Endocrinologists'
+    doctors = NearBy_Doctor.objects.filter(department=department_name)
+    
+    context = {
+        'doctors': doctors
+    }
+    return render(request, 'DoctorProfile/Endocrinologist.html', context)
+
+def Gastroenterologists(request):
+    department_name = 'Gastroenterologists'
+    doctors = NearBy_Doctor.objects.filter(department=department_name)
+    
+    context = {
+        'doctors': doctors
+    }
+    return render(request, 'DoctorProfile/Gastroenterologists.html', context)
+
+def Cardiologists(request):
+    department_name = 'Cardiologists'
+    doctors = NearBy_Doctor.objects.filter(department=department_name)
+    
+    context = {
+        'doctors': doctors
+    }
+    return render(request, 'DoctorProfile/Cardiologists.html', context)
+
+def Psychiatry(request):
+    department_name = 'Psychiatry'
+    doctors = NearBy_Doctor.objects.filter(department=department_name)
+    
+    context = {
+        'doctors': doctors
+    }
+    return render(request, 'DoctorProfile/Psychiatry.html', context)
+
+def Orthopedics(request):
+    department_name = 'Orthopedics'
+    doctors = NearBy_Doctor.objects.filter(department=department_name)
+    
+    context = {
+        'doctors': doctors
+    }
+    return render(request, 'DoctorProfile/Orthopedics.html', context)
+
+
+def Pediatrics(request):
+    department_name = 'Pediatrics'
+    doctors = NearBy_Doctor.objects.filter(department=department_name)
+    
+    context = {
+        'doctors': doctors
+    }
+    return render(request, 'DoctorProfile/Pediatrics.html', context)
