@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 
 from django.contrib import admin
@@ -27,7 +27,7 @@ urlpatterns = [
 ]
 
 
-=======
+
 
 
 from django.contrib import admin
@@ -74,4 +74,4 @@ urlpatterns = [
 ]
 
 
->>>>>>> ec0decf4c99b40666db5361d45c290f3e7d31acc
+

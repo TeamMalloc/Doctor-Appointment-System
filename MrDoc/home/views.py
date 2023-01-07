@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
 from home.models import patient,NearBy_Doctor, Appointment_List, departments,rating,reviewers,health,ReviewRating
@@ -349,7 +349,7 @@ def submit_review(request):
                 messages.success(request, 'Thank you! Your review has been submitted.')
                 return redirect(url)
 
-=======
+
 from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
 from home.models import NearBy_Doctor, Appointment_List, departments
@@ -774,5 +774,9 @@ def Pediatrics(request):
     context = {
         'doctors': doctors
     }
+
     return render(request, 'DoctorProfile/Pediatrics.html', context)
->>>>>>> ec0decf4c99b40666db5361d45c290f3e7d31acc
+
+
+    return render(request, 'DoctorProfile/Pediatrics.html', context)
+

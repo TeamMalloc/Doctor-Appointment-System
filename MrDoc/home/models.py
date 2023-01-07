@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
@@ -148,7 +148,7 @@ class ReviewRating(models.Model):
 
 class payment(models.Model):
     pass
-=======
+
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
@@ -297,4 +297,4 @@ class FAQ(models.Model):
 class PatientList(models.Model):
     patient_profile = models.ForeignKey(patient, on_delete=models.CASCADE)
     # other fields for the PatientList model
->>>>>>> ec0decf4c99b40666db5361d45c290f3e7d31acc
+

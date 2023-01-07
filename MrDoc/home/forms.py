@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from django import forms
 from .models import ReviewRating
 
@@ -13,7 +13,6 @@ class bkashpayment(forms.ModelForm):
     class Meta:
         # model =payment
         filds = ['dept', 'doc', 'name','mail', 'date', 'transiction']
-=======
 
 
 from django import forms
@@ -25,4 +24,4 @@ class FAQForm(forms.Form):
 class AnswerForm(forms.Form):
     answer = forms.CharField(label='Answer', widget=forms.Textarea)
 
->>>>>>> ec0decf4c99b40666db5361d45c290f3e7d31acc
+
