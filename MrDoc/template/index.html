@@ -157,7 +157,7 @@
     <div class="col-6">
       <h4 class="card-title alert alert-primary p-3">Book an Appointment</h4>
       <div class="form d-flex p-3">
-        <form action="{% url 'home' %}" method="post">
+        <form action="{% url 'payment' %}" method="post">
           {% csrf_token %}
           <div class="row">
             {% if doc and dep %}
@@ -206,7 +206,7 @@
               </div>
             </div>
             <div class="d-grid gap-2 col-6 mx-auto">
-              <button type="submit" class="btn btn-outline-primary mt-3">Make an Appointment</button>
+              <button type="submit" class="btn btn-outline-primary mt-3">Make a Payment</button>
 
             </div>
 

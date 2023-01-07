@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class RegUsers(models.Model):
@@ -47,7 +48,7 @@ class NearBy_Doctor(models.Model):
     frday_ev = models.CharField( max_length=122)
     satday_mor = models.CharField( max_length=122)
     satday_ev = models.CharField( max_length=122)
-    image=models.ImageField(upload_to="upload/", null=True,blank=True)
+    doc_image=models.ImageField(upload_to="upload/", null=True,blank=True)
 
     def __str__(self):
         return self.doctor_name
@@ -89,10 +90,12 @@ class departments(models.Model):
 #for review section
 class reviewers(models.Model):
     name = models.CharField(max_length=50)
-    reviews = models.CharField(max_length=200)
-    time = models.DateTimeField()
+    
+    
+    
+    
     def __str__(self):
-        return self.name
+        return self.name   
 
 # for rating section
 class rating(models.Model):
@@ -119,3 +122,28 @@ class health(models.Model):
     date = models.DateTimeField()
 
     
+
+
+
+
+
+
+# for review and rating by kopil
+class ReviewRating(models.Model):
+    doc = models.ForeignKey(NearBy_Doctor, on_delete=models.CASCADE)
+    pat = models.ForeignKey(patient, on_delete=models.CASCADE)
+    subject = models.CharField(max_length=100, blank=True)
+    review = models.TextField(max_length=500, blank=True)
+    rating = models.FloatField()
+    ip = models.CharField(max_length=20, blank=True)
+    status = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.subject
+
+
+
+class payment(models.Model):
+    pass

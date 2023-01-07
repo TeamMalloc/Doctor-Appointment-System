@@ -19,7 +19,9 @@ urlpatterns = [
     path('NearByDoc',views.NearByDoc,name = 'NearByDoc'),
     path('emDoc',views.emDoc,name = 'emDoc'),
     path('review',views.review,name = 'review'),
-    path('rateing',views.rateing,name = 'rateing')
+    path('rateing',views.rateing,name = 'rateing'),
+    path('submit_review', views.submit_review, name='submit_review'),
+    path('payment',views.payment,name = 'payment'),
 
 ]
 
