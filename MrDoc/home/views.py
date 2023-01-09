@@ -669,7 +669,7 @@ def answer_question(request, pk):
     # if request.method == 'POST':
     #     form = AnswerForm(request.POST)
     #     if form.is_valid():
-    #         answer = form.cleaned_data['answer']
+    #         answer  = form.cleaned_data['answer']
     #         faq.answer = answer
     #         faq.save()
     #         return redirect('admin')
