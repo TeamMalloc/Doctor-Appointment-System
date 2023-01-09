@@ -3,6 +3,10 @@ from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
 from home.models import patient,NearBy_Doctor, Appointment_List, departments,rating,reviewers,health,ReviewRating
 from django.contrib import messages
+from .forms import FAQForm
+from .models import PatientList
+from .models import patient
+
 
 # for user authticcation 
 from django.contrib.auth.models import User
@@ -269,7 +273,7 @@ def doctorAcc(request):
         return TemplateResponse (request,'doctorAcc.html',{'doc_image':doc_image,'doctor_name':doctor_name,'department':department, 'location':location,'working_H':working_H,'brife':brife,'clinicloc':clinicloc,'nw_pat_fee':nw_pat_fee,'ret_pat_fee':ret_pat_fee,'repo_fee':repo_fee,'lag_spoken':lag_spoken,'sunday_mor':sunday_mor,'sunday_ev':sunday_ev,'monday_mor':monday_mor,'monday_ev':monday_ev,'tuesday_mor':tuesday_mor,'tuesday_ev':tuesday_ev,'wedday_mor':wedday_mor,'wedday_ev':wedday_ev,'thursday_mor':thursday_mor,'thursday_ev':thursday_ev,'frday_mor':frday_mor,'frday_ev':frday_ev,'satday_mor':satday_mor,'satday_ev':satday_ev})
 
     
-    return render(request,'doctorAcc.html')
+    return render(request,'doctorAcc.html', {'patients': patient.objects.all()})
 
 # for NearByDoc
 def NearByDoc(request):

@@ -11,15 +11,6 @@ admin.site.register(departments)
 admin.site.register(patient)
 admin.site.register(reviewers)
 admin.site.register(ReviewRating)
-
-
-
-
-
-
-
-# Register your models here.
-
 admin.site.register(FAQ)
 
 
